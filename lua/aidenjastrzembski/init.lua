@@ -1,6 +1,7 @@
-require("theprimeagen.set")
-require("theprimeagen.remap")
-require("theprimeagen.lazy_init")
+---@diagnostic disable: undefined-global
+require("aidenjastrzembski.set")
+require("aidenjastrzembski.remap")
+require("aidenjastrzembski.lazy_init")
 
 -- DO.not
 -- DO NOT INCLUDE THIS
