@@ -47,7 +47,7 @@ autocmd({"BufWritePre"}, {
     command = [[%s/\s\+$//e]],
 })
 
-autocmd('BufEnter', {
+autocmd('VimEnter', {
     group = ThePrimeagenGroup,
     callback = function()
         if vim.bo.filetype == "zig" then
@@ -57,7 +57,6 @@ autocmd('BufEnter', {
         end
     end
 })
-
 
 autocmd('LspAttach', {
     group = ThePrimeagenGroup,

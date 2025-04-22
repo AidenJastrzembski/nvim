@@ -6,11 +6,9 @@ return {
         require('lualine').setup {
             options = {
                 icons_enabled = true,
-                theme = 'rose-pine-moon', -- or 'catppuccin', 'tokyonight', etc.
                 section_separators = { left = '', right = '' },
                 component_separators = { left = '', right = '' },
                 globalstatus = true,
-                disabled_filetypes = { 'NvimTree', 'neo-tree' },
             },
             sections = {
                 lualine_a = { 'mode' },
