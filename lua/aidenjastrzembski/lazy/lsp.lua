@@ -56,6 +56,8 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "eslint",
+                "tsserver",
+                "tailwindcss",
 
             },
             handlers = {
