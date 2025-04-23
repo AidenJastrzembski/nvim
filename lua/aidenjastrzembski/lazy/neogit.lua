@@ -38,4 +38,5 @@ return {
             neogit.open({ "pull" })
         end)
     end
-} 
+}
+
