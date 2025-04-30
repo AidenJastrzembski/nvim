@@ -2,6 +2,7 @@ vim.opt.guicursor = ""
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
+vim.opt.fillchars:append { eob = " " }
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -27,5 +28,3 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-
-vim.opt.colorcolumn = "80"

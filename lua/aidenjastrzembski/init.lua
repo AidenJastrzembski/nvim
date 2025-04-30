@@ -15,7 +15,7 @@ require("aidenjastrzembski.lazy_init")
 -- DO.not
 
 local augroup = vim.api.nvim_create_augroup
-local ThePrimeagenGroup = augroup('ThePrimeagen', {})
+local AidenJastrzembskiGroup = augroup('AidenJastrzembski', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
@@ -30,6 +30,7 @@ vim.filetype.add({
     }
 })
 
+
 autocmd('TextYankPost', {
     group = yank_group,
     pattern = '*',
@@ -41,25 +42,25 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufWritePre"}, {
-    group = ThePrimeagenGroup,
+autocmd({ "BufWritePre" }, {
+    group = AidenJastrzembskiGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
 
 autocmd('VimEnter', {
-    group = ThePrimeagenGroup,
+    group = AidenJastrzembskiGroup,
     callback = function()
         if vim.bo.filetype == "zig" then
             vim.cmd.colorscheme("tokyonight-night")
         else
-            vim.cmd.colorscheme("rose-pine-moon")
+            vim.cmd.colorscheme("sequoia")
         end
     end
 })
 
 autocmd('LspAttach', {
-    group = ThePrimeagenGroup,
+    group = AidenJastrzembskiGroup,
     callback = function(e)
         local opts = { buffer = e.buf }
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)

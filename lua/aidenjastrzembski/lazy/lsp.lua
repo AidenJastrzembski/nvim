@@ -23,6 +23,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        "simrat39/rust-tools.nvim",
     },
 
     config = function()
@@ -57,7 +58,8 @@ return {
                 "rust_analyzer",
                 "eslint",
                 "tailwindcss",
-                "ts_ls" --this is tsserver, the name changed
+                "ts_ls", --this is tsserver, the name changed
+                "pyright",
 
             },
             handlers = {
@@ -99,6 +101,30 @@ return {
                         }
                     }
                 end,
+                ["rust_analyzer"] = function()
+                    local rt = require("rust-tools")
+
+                    rt.setup({
+                        server = {
+                            capabilities = capabilities,
+                            settings = {
+                                ["rust-analyzer"] = {
+                                    cargo = { allFeatures = true },
+                                    checkOnSave = { command = "clippy" },
+                                    inlayHints = {
+                                        lifetimeElisionHints = {
+                                            enable = true,
+                                            useParameterNames = true,
+                                        },
+                                        parameterHints = true,
+                                        typeHints = true,
+                                    },
+                                },
+                            },
+                        }
+                    })
+                end,
+
                 ["ts_ls"] = function()
                     require("lspconfig").ts_ls.setup({
                         capabilities = capabilities,
@@ -162,7 +188,7 @@ return {
             mapping = cmp.mapping.preset.insert({
                 ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),  --Enter, this could get annoying tho
+                ['<CR>'] = cmp.mapping.confirm({ select = true }), --Enter, this could get annoying tho
                 ["<C-p>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
