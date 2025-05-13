@@ -9,7 +9,7 @@ end
 
 return {
     {
-        dir = "~/code/personal/forest/sequoia.nvim/",
+        "forest-nvim/sequoia.nvim",
         name = "sequoia",
         lazy = false,
         priority = 1000,

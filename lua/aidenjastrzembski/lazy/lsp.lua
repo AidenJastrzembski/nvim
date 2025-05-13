@@ -14,7 +14,7 @@ return {
     dependencies = {
         "stevearc/conform.nvim",
         "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
+        {"williamboman/mason-lspconfig.nvim", version = "v1.32.0"},
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
@@ -110,7 +110,9 @@ return {
                             settings = {
                                 ["rust-analyzer"] = {
                                     cargo = { allFeatures = true },
-                                    checkOnSave = { command = "clippy" },
+                                    diagnostics = {
+                                        enable = true
+                                    },
                                     inlayHints = {
                                         lifetimeElisionHints = {
                                             enable = true,
