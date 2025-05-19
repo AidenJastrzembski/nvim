@@ -9,7 +9,7 @@ end
 
 return {
     {
-        "forest-nvim/sequoia.nvim",
+        dir = "~/code/personal/forest/sequoia.nvim/",
         name = "sequoia",
         lazy = false,
         priority = 1000,
@@ -81,6 +81,5 @@ return {
             ColorMyPencils();
         end
     },
-
 
 }

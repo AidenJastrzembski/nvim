@@ -14,4 +14,21 @@ return {
             })
         end
     },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        lazy = true,
+        event = "BufRead",
+        main = "ibl",
+        ---@module "ibl"
+        opts = {
+            indent = {
+                char = "▏",
+                highlight = "LineNr",
+            },
+            scope = {
+                enabled = false,
+            },
+        },
+    }
+
 }
