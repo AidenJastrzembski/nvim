@@ -18,16 +18,22 @@ return {
         end
     },
     {
-        "vague2k/vague.nvim",
+        "rose-pine/neovim",
+        name = "rose-pine",
         config = function()
-            require("vague").setup({})
+            require('rose-pine').setup({
+                styles = {
+                    italic = false,
+                },
+            })
+
+            ColorMyPencils();
         end
     },
     {
-        "aditya-azad/candle-grey",
-        name = "candle-grey",
+        "vague2k/vague.nvim",
         config = function()
-            ColorMyPencils()
+            require("vague").setup({})
         end
     },
     {
@@ -69,16 +75,18 @@ return {
         end,
     },
     {
-        "rose-pine/neovim",
-        name = "rose-pine",
+        "sainnhe/everforest",
+        name = "everforest",
         config = function()
-            require('rose-pine').setup({
-                styles = {
-                    italic = false,
-                },
-            })
+            ColorMyPencils()
+        end
+    },
 
-            ColorMyPencils();
+    {
+        "aditya-azad/candle-grey",
+        name = "candle-grey",
+        config = function()
+            ColorMyPencils()
         end
     },
 
