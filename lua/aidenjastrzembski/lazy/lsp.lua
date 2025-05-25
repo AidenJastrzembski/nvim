@@ -14,7 +14,7 @@ return {
     dependencies = {
         "stevearc/conform.nvim",
         "williamboman/mason.nvim",
-        {"williamboman/mason-lspconfig.nvim", version = "v1.32.0"},
+        { "williamboman/mason-lspconfig.nvim", version = "v1.32.0" },
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
@@ -59,6 +59,7 @@ return {
                 "eslint",
                 "tailwindcss",
                 "ts_ls", --this is tsserver, the name changed
+                "unocss-language-server",
                 "pyright",
 
             },
