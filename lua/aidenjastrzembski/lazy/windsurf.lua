@@ -2,7 +2,7 @@ return {
     "Exafunction/windsurf.vim",
     config = function()
         vim.g.codeium_disable_telemetry = true
-        vim.g.codeium_disable_bindings = true
+        vim.g.codeium_no_map_tab = true
 
         local keymap = vim.keymap.set
         local fn = vim.fn
