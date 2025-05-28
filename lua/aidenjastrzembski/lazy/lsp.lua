@@ -59,7 +59,7 @@ return {
                 "eslint",
                 "tailwindcss",
                 "ts_ls", --this is tsserver, the name changed
-                "unocss-language-server",
+                "unocss",
                 "pyright",
 
             },
