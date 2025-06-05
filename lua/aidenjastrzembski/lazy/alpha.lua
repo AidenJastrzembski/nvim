@@ -6,14 +6,14 @@ return {
         local dashboard = require("alpha.themes.dashboard")
 
         dashboard.section.header.val = {
-            [[                               __                ]],
-            [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
-            [[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
-            [[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
-            [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-            [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
-            [[                                                  ]],
-            [[             Welcome back, good luck!            ]],
+            [[                            ]],
+            [[  __  __ /\_\    ___ ___    ]],
+            [[ /\ \/\ \\/\ \  / __` __`\  ]],
+            [[ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
+            [[  \ \___/  \ \_\ \_\ \_\ \_\]],
+            [[   \/__/    \/_/\/_/\/_/\/_/]],
+            [[                            ]],
+            [[    - Aiden Jastrzembski    ]],
         }
 
         dashboard.section.buttons.val = {
@@ -22,7 +22,7 @@ return {
             dashboard.button("r", "  Recent files", ":Telescope oldfiles <CR>"),
             dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
             dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
-            dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+            dashboard.button("q", "  Quit Vim", ":qa<CR>"),
         }
 
         local function footer()
