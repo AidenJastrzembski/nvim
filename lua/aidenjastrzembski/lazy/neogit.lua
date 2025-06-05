@@ -1,6 +1,6 @@
 return {
     "NeogitOrg/neogit",
-    branch = "nightly",
+    tag = "v1.0.0",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "sindrets/diffview.nvim",
@@ -9,12 +9,6 @@ return {
     config = function()
         local neogit = require("neogit")
         neogit.setup({
-            kind = "split",
-            signs = {
-                section = { "", "" },
-                item = { "", "" },
-                hunk = { "", "" },
-            },
             integrations = {
                 diffview = true,
                 telescope = true,
