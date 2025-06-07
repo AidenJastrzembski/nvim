@@ -75,6 +75,13 @@ return {
         end,
     },
     {
+        "shaunsingh/nord.nvim",
+        name = "nord",
+        config = function()
+            ColorMyPencils()
+        end
+    },
+    {
         "sainnhe/everforest",
         name = "everforest",
         config = function()
