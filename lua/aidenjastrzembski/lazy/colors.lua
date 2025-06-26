@@ -1,5 +1,12 @@
 function ColorMyPencils(color)
     color = color or "sequoia"
+    if color == "rpm" then
+        color = "rose-pine-moon"
+    elseif color == "v" then
+        color = "vague"
+    elseif color == "t" then
+        color = "tokyonight"
+    end
     vim.cmd.colorscheme(color)
 
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
