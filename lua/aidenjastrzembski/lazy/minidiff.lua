@@ -5,7 +5,7 @@ return {
         require('mini.diff').setup(
             {
                 view = {
-                    style = 'sign'
+                    style = 'sign',
                 },
             }
         )
