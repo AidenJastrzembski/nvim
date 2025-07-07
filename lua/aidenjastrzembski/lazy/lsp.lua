@@ -34,8 +34,13 @@ return {
                 javascript = { "prettier" },
                 javascriptreact = { "prettier" },
                 rust = { "rustfmt" },
-                python = { "black" },
                 go = { "gofmt" },
+                python = { "black" },
+            },
+            formatters = {
+                black = {
+                    prepend_args = { "--fast" }
+                }
             },
             format_on_save = {
                 timeout_ms = 500,
