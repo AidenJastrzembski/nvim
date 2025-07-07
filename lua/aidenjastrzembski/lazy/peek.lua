@@ -10,6 +10,10 @@ return {
             })
             vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
             vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+
+            vim.api.nvim_set_keymap("n", "<leader>po", ":PeekOpen<CR>", { noremap = true, silent = true })
+            vim.api.nvim_set_keymap("n", "<leader>pc", ":PeekClose<CR>", { noremap = true, silent = true })
         end,
+
     },
 }
