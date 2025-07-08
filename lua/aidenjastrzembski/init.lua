@@ -52,9 +52,11 @@ autocmd('VimEnter', {
     group = AidenJastrzembskiGroup,
     callback = function()
         if vim.bo.filetype == "zig" then
-            vim.cmd.colorscheme("tokyonight-night")
+            ColorMyPencils("tokyonight-night")
+        elseif vim.bo.filetype == "rust" then
+            ColorMyPencils("sequoia")
         else
-            vim.cmd.colorscheme("sequoia")
+            ColorMyPencils("vague")
         end
     end
 })
