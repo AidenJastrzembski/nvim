@@ -1,5 +1,5 @@
 return {
-    dir = '~/code/personal/maple.nvim/',
+    'forest-nvim/maple.nvim',
     config = function()
         require('maple').setup({
         })
