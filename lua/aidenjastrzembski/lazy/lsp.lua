@@ -63,6 +63,7 @@ return {
                 "rust_analyzer",
                 "eslint",
                 "tailwindcss",
+                "gopls",
                 "ts_ls", --this is tsserver, the name changed
                 "unocss",
                 "pyright",
@@ -89,6 +90,9 @@ return {
                     })
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
+                end,
+                gopls = function()
+                    require("lspconfig").gopls.setup({})
                 end,
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
