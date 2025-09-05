@@ -64,6 +64,7 @@ return {
                 "eslint",
                 "tailwindcss",
                 "gopls",
+                "clangd",
                 "ts_ls", --this is tsserver, the name changed
                 "unocss",
                 "pyright",
@@ -186,6 +187,18 @@ return {
                         }
                     })
                 end,
+                clangd = function()
+                    require("lspconfig").clangd.setup({
+                        capabilities = capabilities,
+                        cmd = { "clangd", "--background-index", "--clang-tidy", "--completion-style=detailed" },
+                        init_options = {
+                            clangdFileStatus = true,
+                            usePlaceholders = true,
+                            completeUnimported = true,
+                        },
+                    })
+                end,
+
             }
         })
 
