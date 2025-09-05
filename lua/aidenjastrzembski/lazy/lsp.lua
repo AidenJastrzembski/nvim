@@ -59,15 +59,16 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "lua_ls",
                 "rust_analyzer",
+                "clangd",
+                "zls",
+                "gopls",
+                "ts_ls", --this is tsserver, the name changed
                 "eslint",
                 "tailwindcss",
-                "gopls",
-                "clangd",
-                "ts_ls", --this is tsserver, the name changed
-                "unocss",
+                -- "unocss",
                 "pyright",
+                "lua_ls",
 
             },
             handlers = {
