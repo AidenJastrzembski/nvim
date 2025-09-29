@@ -1,14 +1,3 @@
-local root_files = {
-    '.luarc.json',
-    '.luarc.jsonc',
-    '.luacheckrc',
-    '.stylua.toml',
-    'stylua.toml',
-    'selene.toml',
-    'selene.yml',
-    '.git',
-}
-
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -23,7 +12,6 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
-        "simrat39/rust-tools.nvim",
     },
 
     config = function()
@@ -47,6 +35,7 @@ return {
                 lsp_fallback = true,
             },
         })
+
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
@@ -63,143 +52,68 @@ return {
                 "clangd",
                 "zls",
                 "gopls",
-                "ts_ls", --this is tsserver, the name changed
+                "ts_ls",
                 "eslint",
                 "tailwindcss",
-                -- "unocss",
                 "pyright",
                 "lua_ls",
-
             },
             handlers = {
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
+                -- Default handler - auto-setup ALL servers
+                function(server_name)
+                    vim.lsp.config(server_name, {
+                        capabilities = capabilities,
+                    })
+                    vim.lsp.enable(server_name)
                 end,
 
-                zls = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.zls.setup({
-                        root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
-                        settings = {
-                            zls = {
-                                enable_inlay_hints = true,
-                                enable_snippets = true,
-                                warn_style = true,
-                            },
-                        },
-                    })
-                    vim.g.zig_fmt_parse_errors = 0
-                    vim.g.zig_fmt_autosave = 0
-                end,
-                gopls = function()
-                    require("lspconfig").gopls.setup({})
-                end,
+                -- Lua configuration - recognize vim global
                 ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
+                    vim.lsp.config("lua_ls", {
                         capabilities = capabilities,
                         settings = {
                             Lua = {
-                                format = {
-                                    enable = true,
-                                    defaultConfig = {
-                                        indent_style = "space",
-                                        indent_size = "2",
-                                    }
+                                diagnostics = {
+                                    globals = { "vim" },  -- Recognize 'vim' global
                                 },
-                            }
-                        }
-                    }
+                                workspace = {
+                                    library = vim.api.nvim_get_runtime_file("", true),
+                                    checkThirdParty = false,
+                                },
+                                telemetry = {
+                                    enable = false,
+                                },
+                            },
+                        },
+                    })
+                    vim.lsp.enable("lua_ls")
                 end,
+
+                -- Custom Rust configuration
                 ["rust_analyzer"] = function()
-                    local rt = require("rust-tools")
-
-                    rt.setup({
-                        server = {
-                            capabilities = capabilities,
-                            settings = {
-                                ["rust-analyzer"] = {
-                                    cargo = { allFeatures = true },
-                                    diagnostics = {
-                                        enable = true
-                                    },
-                                    inlayHints = {
-                                        lifetimeElisionHints = {
-                                            enable = true,
-                                            useParameterNames = true,
-                                        },
-                                        parameterHints = true,
-                                        typeHints = true,
-                                    },
-                                },
-                            },
-                        }
-                    })
-                end,
-
-                ["ts_ls"] = function()
-                    require("lspconfig").ts_ls.setup({
+                    vim.lsp.config("rust_analyzer", {
                         capabilities = capabilities,
                         settings = {
-                            typescript = {
-                                inlayHints = {
-                                    includeInlayParameterNameHints = "all",
-                                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                                    includeInlayFunctionParameterTypeHints = true,
-                                    includeInlayVariableTypeHints = true,
-                                    includeInlayPropertyDeclarationTypeHints = true,
-                                    includeInlayFunctionLikeReturnTypeHints = true,
-                                    includeInlayEnumMemberValueHints = true,
+                            ["rust-analyzer"] = {
+                                cargo = { 
+                                    allFeatures = true 
                                 },
-                            },
-                            javascript = {
+                                diagnostics = {
+                                    enable = true,
+                                },
                                 inlayHints = {
-                                    includeInlayParameterNameHints = "all",
-                                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                                    includeInlayFunctionParameterTypeHints = true,
-                                    includeInlayVariableTypeHints = true,
-                                    includeInlayPropertyDeclarationTypeHints = true,
-                                    includeInlayFunctionLikeReturnTypeHints = true,
-                                    includeInlayEnumMemberValueHints = true,
+                                    lifetimeElisionHints = {
+                                        enable = "always",
+                                    },
+                                },
+                                checkOnSave = {
+                                    command = "clippy",
                                 },
                             },
                         },
                     })
+                    vim.lsp.enable("rust_analyzer")
                 end,
-                eslint = function()
-                    require("lspconfig").eslint.setup({
-                        capabilities = capabilities,
-                        on_attach = function(client, bufnr)
-                            vim.api.nvim_create_autocmd("BufWritePre", {
-                                buffer = bufnr,
-                                command = "EslintFixAll",
-                            })
-                        end,
-                        settings = {
-                            format = true,
-                            packageManager = "npm",
-                            run = "onType",
-                            validate = "on",
-                            workingDirectory = {
-                                mode = "auto"
-                            }
-                        }
-                    })
-                end,
-                clangd = function()
-                    require("lspconfig").clangd.setup({
-                        capabilities = capabilities,
-                        cmd = { "clangd", "--background-index", "--clang-tidy", "--completion-style=detailed" },
-                        init_options = {
-                            clangdFileStatus = true,
-                            usePlaceholders = true,
-                            completeUnimported = true,
-                        },
-                    })
-                end,
-
             }
         })
 
