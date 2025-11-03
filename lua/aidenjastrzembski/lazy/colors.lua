@@ -73,6 +73,13 @@ return {
             require('onedark').setup {}
             require('onedark').load()
         end
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        name = "kanagawa",
+        config = function()
+            ColorMyPencils()
+        end
     }
 
 }
