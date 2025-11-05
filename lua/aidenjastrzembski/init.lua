@@ -51,13 +51,7 @@ autocmd({ "BufWritePre" }, {
 autocmd('VimEnter', {
     group = AidenJastrzembskiGroup,
     callback = function()
-        if vim.bo.filetype == "zig" then
             ColorMyPencils("tokyonight-night")
-        elseif vim.bo.filetype == "rust" then
-            ColorMyPencils("sequoia")
-        else
-            ColorMyPencils("vague")
-        end
     end
 })
 
