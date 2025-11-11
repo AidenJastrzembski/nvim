@@ -41,15 +41,6 @@ return {
         end
     },
     {
-        "shaunsingh/nord.nvim",
-        name = "nord",
-    },
-    {
-        "sainnhe/everforest",
-        name = "everforest",
-    },
-
-    {
         "aditya-azad/candle-grey",
         name = "candle-grey",
     },
@@ -63,6 +54,9 @@ return {
     {
         "rebelot/kanagawa.nvim",
         name = "kanagawa",
-    }
-
+    },
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        name = "oxocarbon",
+    },
 }
