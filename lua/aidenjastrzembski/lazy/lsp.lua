@@ -75,7 +75,7 @@ return {
                         settings = {
                             Lua = {
                                 diagnostics = {
-                                    globals = { "vim" },  -- Recognize 'vim' global
+                                    globals = { "vim" }, -- Recognize 'vim' global
                                 },
                                 workspace = {
                                     library = vim.api.nvim_get_runtime_file("", true),
@@ -90,14 +90,30 @@ return {
                     vim.lsp.enable("lua_ls")
                 end,
 
+                ["zls"] = function()
+                    vim.lsp.config("zls", {
+                        capabilities = capabilities,
+                        settings = {
+                            zls = {
+                                enable_inlay_hints = true,
+                                enable_snippets = true,
+                                warn_style = true,
+                                highlight_global_var_declarations = true,
+                            },
+                        },
+                    })
+                    vim.lsp.enable("zls")
+                end,
+
+
                 -- Custom Rust configuration
                 ["rust_analyzer"] = function()
                     vim.lsp.config("rust_analyzer", {
                         capabilities = capabilities,
                         settings = {
                             ["rust-analyzer"] = {
-                                cargo = { 
-                                    allFeatures = true 
+                                cargo = {
+                                    allFeatures = true
                                 },
                                 diagnostics = {
                                     enable = true,

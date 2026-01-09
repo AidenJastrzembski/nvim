@@ -3,16 +3,6 @@ require("aidenjastrzembski.set")
 require("aidenjastrzembski.remap")
 require("aidenjastrzembski.lazy_init")
 
--- DO.not
--- DO NOT INCLUDE THIS
-
--- If i want to keep doing lsp debugging
--- function restart_htmx_lsp()
---     require("lsp-debug-tools").restart({ expected = {}, name = "htmx-lsp", cmd = { "htmx-lsp", "--level", "DEBUG" }, root_dir = vim.loop.cwd(), });
--- end
-
--- DO NOT INCLUDE THIS
--- DO.not
 
 local augroup = vim.api.nvim_create_augroup
 local AidenJastrzembskiGroup = augroup('AidenJastrzembski', {})
@@ -51,7 +41,10 @@ autocmd({ "BufWritePre" }, {
 autocmd('VimEnter', {
     group = AidenJastrzembskiGroup,
     callback = function()
-            ColorMyPencils("tokyonight-night")
+        if vim.bo.filetype == "zig()" then
+            ColorMyPencils("rose-pine-moon")
+        end
+        ColorMyPencils("tokyonight-night")
     end
 })
 
@@ -69,7 +62,14 @@ autocmd('LspAttach', {
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    end
+    end,
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.supports_method("textDocument/inlayHint") then
+            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+        end
+    end,
+
 })
 
 vim.g.netrw_browse_split = 0
