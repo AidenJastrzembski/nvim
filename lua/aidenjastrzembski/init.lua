@@ -52,24 +52,30 @@ autocmd('LspAttach', {
     group = AidenJastrzembskiGroup,
     callback = function(e)
         local opts = { buffer = e.buf }
-        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-        vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    end,
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        local map = vim.keymap.set
+
+        -- Navigation
+        map("n", "gd", vim.lsp.buf.definition, opts)
+        map("n", "gr", vim.lsp.buf.references, opts)
+        map("n", "K", vim.lsp.buf.hover, opts)
+
+        -- Actions
+        map("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+        map("n", "<leader>vca", vim.lsp.buf.code_action, opts)
+        map("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+        map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+
+        -- Diagnostics
+        map("n", "<leader>vd", vim.diagnostic.open_float, opts)
+        map("n", "[d", vim.diagnostic.goto_prev, opts)
+        map("n", "]d", vim.diagnostic.goto_next, opts)
+
+        -- Inlay hints
+        local client = vim.lsp.get_client_by_id(e.data.client_id)
         if client and client.supports_method("textDocument/inlayHint") then
-            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+            vim.lsp.inlay_hint.enable(true, { bufnr = e.buf })
         end
     end,
-
 })
 
 vim.g.netrw_browse_split = 0
