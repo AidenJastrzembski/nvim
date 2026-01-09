@@ -22,14 +22,15 @@ return {
                 typescriptreact = { "prettier" },
                 javascript = { "prettier" },
                 javascriptreact = { "prettier" },
+                svelte = { "prettier" },
                 rust = { "rustfmt" },
                 go = { "gofmt" },
                 python = { "black" },
             },
             formatters = {
                 black = {
-                    prepend_args = { "--fast" }
-                }
+                    prepend_args = { "--fast" },
+                },
             },
             format_on_save = {
                 timeout_ms = 500,
@@ -37,13 +38,14 @@ return {
             },
         })
 
-        local cmp = require('cmp')
+        local cmp = require("cmp")
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
             "force",
             {},
             vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities())
+            cmp_lsp.default_capabilities()
+        )
 
         require("fidget").setup({})
         require("mason").setup()
@@ -67,7 +69,6 @@ return {
                     })
                     vim.lsp.enable(server_name)
                 end,
-
                 -- Lua configuration - recognize vim global
                 ["lua_ls"] = function()
                     vim.lsp.config("lua_ls", {
@@ -139,21 +140,21 @@ return {
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body)
+                    require("luasnip").lsp_expand(args.body)
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }), --Enter, this could get annoying tho
+                ["<S-Tab>"] = cmp.mapping.select_prev_item(cmp_select),
+                ["<Tab>"] = cmp.mapping.select_next_item(cmp_select),
+                ["<CR>"] = cmp.mapping.confirm({ select = true }), --Enter, this could get annoying tho
                 ["<C-p>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' },
+                { name = "nvim_lsp" },
+                { name = "luasnip" },
             }, {
-                { name = 'buffer' },
-            })
+                { name = "buffer" },
+            }),
         })
 
         vim.diagnostic.config({
@@ -171,5 +172,5 @@ return {
                 prefix = "",
             },
         })
-    end
+    end,
 }
