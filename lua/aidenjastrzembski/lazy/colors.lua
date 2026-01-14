@@ -55,13 +55,13 @@ return {
         "aditya-azad/candle-grey",
         name = "candle-grey",
     },
-    {
-        "navarasu/onedark.nvim",
-        priority = 1000,
-        config = function()
-            require('onedark').setup {}
-        end
-    },
+    --   {
+    --       "navarasu/onedark.nvim",
+    --       priority = 1000,
+    --       config = function()
+    --           require('onedark').setup {}
+    --       end
+    --   },
     {
         "rebelot/kanagawa.nvim",
         name = "kanagawa",
@@ -70,4 +70,8 @@ return {
         "nyoom-engineering/oxocarbon.nvim",
         name = "oxocarbon",
     },
+    {
+        "EdenEast/nightfox.nvim",
+        name = "nightfox",
+    }
 }
