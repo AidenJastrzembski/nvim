@@ -1,5 +1,4 @@
----@diagnostic disable: undefined-global
-function ColorMyPencils(color)
+local function ColorMyPencils(color)
     color = color or "sequoia"
     vim.cmd.colorscheme(color)
 
@@ -41,7 +40,6 @@ return {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
-        opts = {},
         config = function()
             ColorMyPencils("tokyonight-night")
         end
@@ -55,13 +53,6 @@ return {
         "aditya-azad/candle-grey",
         name = "candle-grey",
     },
-    --   {
-    --       "navarasu/onedark.nvim",
-    --       priority = 1000,
-    --       config = function()
-    --           require('onedark').setup {}
-    --       end
-    --   },
     {
         "rebelot/kanagawa.nvim",
         name = "kanagawa",

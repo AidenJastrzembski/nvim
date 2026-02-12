@@ -97,5 +97,35 @@ return {
         vim.diagnostic.config({
             float = { border = "rounded", source = "always" },
         })
+
+        vim.api.nvim_create_autocmd('LspAttach', {
+            group = vim.api.nvim_create_augroup('LspKeymaps', {}),
+            callback = function(e)
+                local opts = { buffer = e.buf }
+                local map = vim.keymap.set
+
+                -- Navigation
+                map("n", "gd", vim.lsp.buf.definition, opts)
+                map("n", "gr", vim.lsp.buf.references, opts)
+                map("n", "K", vim.lsp.buf.hover, opts)
+
+                -- Actions
+                map("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+                map("n", "<leader>vca", vim.lsp.buf.code_action, opts)
+                map("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+                map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+
+                -- Diagnostics
+                map("n", "<leader>vd", vim.diagnostic.open_float, opts)
+                map("n", "[d", vim.diagnostic.goto_prev, opts)
+                map("n", "]d", vim.diagnostic.goto_next, opts)
+
+                -- Inlay hints
+                local client = vim.lsp.get_client_by_id(e.data.client_id)
+                if client and client.supports_method("textDocument/inlayHint") then
+                    vim.lsp.inlay_hint.enable(true, { bufnr = e.buf })
+                end
+            end,
+        })
     end,
 }
