@@ -119,7 +119,6 @@ return {
                     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
                 end, { buffer = e.buf, desc = "Toggle inlay hints" })
 
-                -- Inlay hints (skip rust_analyzer, rustaceanvim handles it)
                 local client = vim.lsp.get_client_by_id(e.data.client_id)
                 if client and client.supports_method("textDocument/inlayHint") then
                     vim.lsp.inlay_hint.enable(true, { bufnr = e.buf })
