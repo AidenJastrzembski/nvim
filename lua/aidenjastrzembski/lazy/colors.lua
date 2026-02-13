@@ -1,9 +1,18 @@
-local function ColorMyPencils(color)
+function Colo(color)
     color = color or "sequoia"
     vim.cmd.colorscheme(color)
 
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    local transparent = { bg = "none" }
+    local groups = {
+        "Normal",
+        "NormalNC",
+        "NormalFloat",
+        "SignColumn",
+        "WinSeparator",
+    }
+    for _, group in ipairs(groups) do
+        vim.api.nvim_set_hl(0, group, transparent)
+    end
 
     vim.opt.colorcolumn = ""
     vim.api.nvim_set_hl(0, "LspInlayHint", {
@@ -11,6 +20,9 @@ local function ColorMyPencils(color)
         bg = "NONE",
         italic = true,
     })
+    -- rust-analyzer marks proc-macro-generated items as "unresolvedReference"
+    -- even when they compile fine — clear the false-positive highlight
+    vim.api.nvim_set_hl(0, "@lsp.type.unresolvedReference", {})
 end
 
 return {
@@ -41,7 +53,7 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            ColorMyPencils("tokyonight-night")
+            Colo("tokyonight-night")
         end
     },
     {

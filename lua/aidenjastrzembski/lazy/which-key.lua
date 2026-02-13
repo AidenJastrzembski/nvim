@@ -9,6 +9,8 @@ return {
             { "<leader>s", group = "search" },
             { "<leader>t", group = "tabs" },
             { "<leader>z", group = "zen" },
+            { "<leader>r", group = "rust" },
+            { "<leader>o", group = "overseer" },
         },
     },
 }

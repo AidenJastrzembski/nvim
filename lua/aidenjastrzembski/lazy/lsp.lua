@@ -48,22 +48,11 @@ return {
                     },
                 },
             },
-            rust_analyzer = {
-                settings = {
-                    ["rust-analyzer"] = {
-                        cargo = { allFeatures = true },
-                        checkOnSave = { command = "clippy" },
-                        inlayHints = {
-                            lifetimeElisionHints = { enable = "always" },
-                        },
-                    },
-                },
-            },
         }
 
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "rust_analyzer", "clangd", "zls", "gopls", "ts_ls",
+                "clangd", "zls", "gopls", "ts_ls",
                 "eslint", "tailwindcss", "pyright", "lua_ls",
             },
             handlers = {
@@ -120,7 +109,7 @@ return {
                 map("n", "[d", vim.diagnostic.goto_prev, opts)
                 map("n", "]d", vim.diagnostic.goto_next, opts)
 
-                -- Inlay hints
+                -- Inlay hints (skip rust_analyzer, rustaceanvim handles it)
                 local client = vim.lsp.get_client_by_id(e.data.client_id)
                 if client and client.supports_method("textDocument/inlayHint") then
                     vim.lsp.inlay_hint.enable(true, { bufnr = e.buf })
