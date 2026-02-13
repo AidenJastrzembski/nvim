@@ -2,7 +2,7 @@
 return {
     "nvim-telescope/telescope.nvim",
 
-    tag = "0.1.5",
+    branch = "master",
 
     dependencies = {
         "nvim-lua/plenary.nvim"
@@ -27,7 +27,7 @@ return {
                 require('telescope.builtin').grep_string({ search = word })
             end, desc = 'Telescope grep cWORD' },
             { '<leader>ps', function()
-                require('telescope.builtin').live_grep({ search = "" })
+                require('telescope.builtin').live_grep()
             end, desc = 'Telescope live grep' },
             { '<leader>vh', builtin('help_tags'), desc = 'Telescope help tags' },
         }

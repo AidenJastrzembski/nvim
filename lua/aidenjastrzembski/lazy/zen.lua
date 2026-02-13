@@ -1,6 +1,9 @@
 return {
     "folke/zen-mode.nvim",
     dependencies = { "folke/twilight.nvim" },
+    keys = {
+        { "<leader>zz", "<cmd>ZenMode<CR>", desc = "Zen Mode" },
+    },
     config = function()
         require("zen-mode").setup {
             window = {
@@ -12,6 +15,5 @@ return {
                 tmux = { enabled = false },
             },
         }
-        vim.api.nvim_set_keymap("n", "<leader>zz", ":ZenMode<CR>", { noremap = true, silent = true })
     end,
 }

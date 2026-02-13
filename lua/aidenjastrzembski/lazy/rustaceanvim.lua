@@ -1,7 +1,9 @@
 return {
     "mrcjkb/rustaceanvim",
     version = "^6",
-    lazy = false,
+    ft = { "rust" },
+    event = { "BufReadPre Cargo.toml" },
+    cmd = { "RustLsp", "RustAnalyzer" },
     dependencies = {
         "mfussenegger/nvim-dap",
         {

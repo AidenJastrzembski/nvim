@@ -19,17 +19,17 @@ return {
             end
 
             -- Navigation
-            map('n', ']h', function()
+            vim.keymap.set('n', ']h', function()
                 if vim.wo.diff then return ']h' end
                 vim.schedule(function() gs.next_hunk() end)
                 return '<Ignore>'
-            end, 'Next hunk')
+            end, { buffer = bufnr, expr = true, desc = 'Next hunk' })
 
-            map('n', '[h', function()
+            vim.keymap.set('n', '[h', function()
                 if vim.wo.diff then return '[h' end
                 vim.schedule(function() gs.prev_hunk() end)
                 return '<Ignore>'
-            end, 'Prev hunk')
+            end, { buffer = bufnr, expr = true, desc = 'Prev hunk' })
 
             -- Actions
             map('n', '<leader>hs', gs.stage_hunk, 'Stage hunk')

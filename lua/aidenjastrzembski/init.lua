@@ -1,3 +1,8 @@
+-- Compatibility shim for plugins still calling deprecated vim.tbl_islist.
+if vim.islist and vim.tbl_islist ~= vim.islist then
+    vim.tbl_islist = vim.islist
+end
+
 require("aidenjastrzembski.set")
 require("aidenjastrzembski.remap")
 require("aidenjastrzembski.lazy_init")
