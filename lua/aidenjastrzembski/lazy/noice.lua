@@ -27,8 +27,8 @@ return {
         },
     },
     keys = {
-        { "<leader>sn", function() require("noice").cmd("telescope") end, desc = "Noice (Telescope)" },
-        { "<leader>sm", function() require("noice").cmd("history") end,   desc = "Noice history" },
+        { "<leader>sn", function() require("noice").cmd("telescope") end, desc = "Notifications (Telescope)" },
+        { "<leader>sm", function() require("noice").cmd("history") end,   desc = "Message history" },
         { "<leader>sd", function() require("noice").cmd("dismiss") end,   desc = "Dismiss all" },
     },
 }

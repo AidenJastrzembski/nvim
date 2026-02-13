@@ -4,8 +4,8 @@ return {
         cmd = "Trouble",
         keys = {
             { "<leader>tt", function() require("trouble").toggle("diagnostics") end, desc = "Toggle Trouble" },
-            { "[e", function() require("trouble").prev({ skip_groups = true, jump = true }) end, desc = "Prev error" },
-            { "]e", function() require("trouble").next({ skip_groups = true, jump = true }) end, desc = "Next error" },
+            { "[d", function() require("trouble").prev({ skip_groups = true, jump = true }) end, desc = "Prev diagnostic" },
+            { "]d", function() require("trouble").next({ skip_groups = true, jump = true }) end, desc = "Next diagnostic" },
         },
         config = function()
             require("trouble").setup({

@@ -48,12 +48,18 @@ return {
                     },
                 },
             },
+            ruff = {
+                on_attach = function(client)
+                    client.server_capabilities.hoverProvider = false
+                end,
+            },
         }
 
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "clangd", "zls", "gopls", "ts_ls",
-                "eslint", "tailwindcss", "pyright", "lua_ls",
+                "eslint", "tailwindcss", "pyright", "ruff", "lua_ls",
+                "svelte"
             },
             handlers = {
                 function(server_name)
@@ -95,6 +101,8 @@ return {
 
                 -- Navigation
                 map("n", "gd", vim.lsp.buf.definition, opts)
+                map("n", "gD", vim.lsp.buf.declaration, opts)
+                map("n", "gi", vim.lsp.buf.implementation, opts)
                 map("n", "gr", vim.lsp.buf.references, opts)
                 map("n", "K", vim.lsp.buf.hover, opts)
 
@@ -106,8 +114,10 @@ return {
 
                 -- Diagnostics
                 map("n", "<leader>vd", vim.diagnostic.open_float, opts)
-                map("n", "[d", vim.diagnostic.goto_prev, opts)
-                map("n", "]d", vim.diagnostic.goto_next, opts)
+
+                map("n", "<leader>vt", function()
+                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                end, { buffer = e.buf, desc = "Toggle inlay hints" })
 
                 -- Inlay hints (skip rust_analyzer, rustaceanvim handles it)
                 local client = vim.lsp.get_client_by_id(e.data.client_id)
