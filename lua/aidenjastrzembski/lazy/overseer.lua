@@ -1,5 +1,6 @@
 return {
     "stevearc/overseer.nvim",
+    dependencies = { "stevearc/dressing.nvim" },
     cmd = { "OverseerRun", "OverseerToggle", "OverseerInfo" },
     keys = {
         { "<leader>or", "<cmd>OverseerRun<cr>",    desc = "Run task" },
