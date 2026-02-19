@@ -35,3 +35,16 @@ autocmd({ "BufWritePre" }, {
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
+
+autocmd('BufEnter', {
+    group = AidenJastrzembskiGroup,
+    pattern = '*',
+    callback = function(args)
+        local ft = vim.bo[args.buf].filetype
+        if ft == 'rust' and vim.g.colors_name ~= 'sequoia' then
+            vim.cmd('lua Colo("sequoia")')
+        elseif ft == 'zig' and vim.g.colors_name ~= 'catppuccin-macchiato' then
+            vim.cmd('lua Colo("catppuccin-macchiato")')
+        end
+    end,
+})

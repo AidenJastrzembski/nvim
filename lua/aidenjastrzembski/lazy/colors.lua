@@ -29,7 +29,11 @@ return {
     {
         "forest-nvim/sequoia.nvim",
         name = "sequoia",
+        lazy = false,
         priority = 1000,
+        config = function()
+            Colo("sequoia")
+        end,
     },
     {
         "rose-pine/neovim",
