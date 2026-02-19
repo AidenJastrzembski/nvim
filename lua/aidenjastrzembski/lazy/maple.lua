@@ -6,7 +6,7 @@ return {
     opts = {},
     keys = {
         { '<leader>mt', '<cmd>MapleToggle<CR>',         desc = 'Toggle Maple Notes' },
-        { '<leader>mv', '<cmd>MapleToggleVSplit<CR>',   desc = 'Toggle Maple Vertical Split' },
+        { '<leader>mv', '<cmd>MapleToggleVsplit<CR>',   desc = 'Toggle Maple Vertical Split' },
         { '<leader>mh', '<cmd>MapleToggleSplit<CR>',    desc = 'Toggle Maple Horizontal Split' },
         { '<leader>mb', '<cmd>MapleToggleBuffer<CR>',   desc = 'Toggle Maple Full Buffer' },
         { '<leader>ms', '<cmd>MapleSwitchMode<CR>',     desc = 'Switch notes mode' },
