@@ -1,3 +1,4 @@
 plugin/
 test.lua
 .DS_Store
+.nvimlog
