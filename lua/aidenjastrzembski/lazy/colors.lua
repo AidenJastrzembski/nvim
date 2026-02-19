@@ -34,27 +34,17 @@ return {
     {
         "rose-pine/neovim",
         name = "rose-pine",
-        config = function()
-            require('rose-pine').setup({
-                styles = {
-                    italic = false,
-                },
-            })
-        end
+        priority = 1000,
     },
     {
         "vague2k/vague.nvim",
-        config = function()
-            require("vague").setup({})
-        end
+        name = "vague",
+        priority = 1000,
     },
     {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
-        config = function()
-            Colo("tokyonight-night")
-        end
     },
     {
         "catppuccin/nvim",
@@ -62,19 +52,13 @@ return {
         priority = 1000,
     },
     {
-        "aditya-azad/candle-grey",
-        name = "candle-grey",
-    },
-    {
         "rebelot/kanagawa.nvim",
         name = "kanagawa",
+        priority = 1000,
     },
     {
-        "nyoom-engineering/oxocarbon.nvim",
-        name = "oxocarbon",
-    },
-    {
-        "EdenEast/nightfox.nvim",
-        name = "nightfox",
+        "dgox16/oldworld.nvim",
+        name = "oldworld",
+        priority = 1000,
     }
 }
