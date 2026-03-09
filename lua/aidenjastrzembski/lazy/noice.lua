@@ -10,6 +10,7 @@ return {
                 stages = "fade_in_slide_out",
                 timeout = 2000,
                 render = "compact",
+                background_colour = "#000000",
             },
             config = function(_, opts)
                 local notify = require("notify")
