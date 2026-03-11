@@ -38,7 +38,7 @@ return {
             end
 
             function OllamaProvider._get_default_model()
-                return "qwen2.5-coder:14b"
+                return "qwen2.5-coder:7b"
             end
 
             function OllamaProvider.fetch_models(callback)
