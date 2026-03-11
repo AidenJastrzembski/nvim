@@ -2,7 +2,6 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-        "Exafunction/windsurf.vim",
     },
     event = "VeryLazy",
     config = function()
