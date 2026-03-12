@@ -1,5 +1,5 @@
 function Colo(color)
-    color = color or "sequoia"
+    color = color or "rose-pine-moon"
     vim.cmd.colorscheme(color)
 
     local transparent = { bg = "none" }
@@ -29,16 +29,16 @@ return {
     {
         "forest-nvim/sequoia.nvim",
         name = "sequoia",
-        lazy = false,
         priority = 1000,
-        config = function()
-            Colo("sequoia")
-        end,
     },
     {
         "rose-pine/neovim",
         name = "rose-pine",
         priority = 1000,
+        lazy = false,
+        config = function()
+            Colo("rose-pine-moon")
+        end,
     },
     {
         "vague2k/vague.nvim",
